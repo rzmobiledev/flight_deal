@@ -1,36 +1,25 @@
-import os
-import requests
-from dotenv import load_dotenv
-
-load_dotenv()
-
 
 class DataManager:
-    """Data Manager to retrieve all datas from google sheet"""
-    _SHEETY_ENDPOINT = os.environ.get("SHEETY_ENDPOINT")
-    _SHEETY_HEADER = f"Bearer {os.environ.get('SHEETY_TOKEN')}"
+    """Formatting variables used in this apps"""
+    def __init__(
+            self,
+            price: float,
+            departure_city_name: str,
+            departure_airport_code: str,
+            arrival_city_name: str,
+            arrival_airport_code: str,
+            flight_no: str,
+            outbound_date: str,
+            inbound_date: str,
+            seats: str = None,
+    ):
+        self.price = price
+        self.departure_city_name = departure_city_name,
+        self.departure_airport_code = departure_airport_code,
+        self.arrival_city_name = arrival_city_name,
+        self.arrival_airport_code = arrival_airport_code
+        self.flight_no = flight_no
+        self.seats = seats
+        self.outbound_date = outbound_date
+        self.inbound_date = inbound_date
 
-    def __init__(self):
-        self.endpoint = self._SHEETY_ENDPOINT
-
-    @property
-    def header(self):
-        return {
-            "Authorization": f"Bearer {os.environ.get('SHEETY_TOKEN')}"
-        }
-
-    @property
-    def get_data_from_google_sheet(self):
-        """Get all informations from google sheet"""
-        response = requests.get(url=self.endpoint, headers=self.header)
-        return response.json()
-
-    def save_data_to_google_sheet(self, iata_code: str, id: str):
-        """Save IATA Code to google sheet"""
-        sheet_params = {
-            "price": {
-                "iataCode": iata_code
-            }
-        }
-        response = requests.put(url=f"{self.endpoint}/{id}", json=sheet_params, headers=self.header)
-        return response.json()

@@ -18,7 +18,9 @@ class FlightData:
             arrival_city_name: str,
             arrival_airport_code: str,
             outbound_date: str,
-            inbound_date: str
+            inbound_date: str,
+            flight_no: str,
+            seats: str | int
     ):
         self.departure_airport_code = departure_airport_code
         self.departure_city_name = departure_city_name
@@ -27,6 +29,9 @@ class FlightData:
         self.arrival_airport_code = arrival_airport_code,
         self.outbound_date = outbound_date
         self.inbound_date = inbound_date
+        self.flight_no = flight_no
+        self.seats = seats
+
 
 
 

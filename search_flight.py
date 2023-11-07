@@ -60,7 +60,7 @@ class SearchFlight:
             "nights_in_dst_to": 28,
             "flight_type": "round",
             "one_for_city": 1,
-            "curr": "GBP"
+            "curr": "IDR"
         }
 
         response = requests.get(url=self.itineraries_endpoint, params=params, headers=headers)
